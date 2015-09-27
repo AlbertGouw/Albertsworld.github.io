@@ -103,7 +103,7 @@ var counter = 0;
 var enemeycurhealth;
 
 //player variable
-var health = [0,12000,7000,7000];
+var health = [0,25000,20000,15000];
 var mana = [0,180,240,300];
 var damage = [0,rdmplayrdmg1, rdmplayrdmg2,rdmplayrdmg3];
 var special = [0,rdmplayrSpc1,rdmplayrSpc2,rdmplayrSpc3];
@@ -111,15 +111,15 @@ var healthpot = [0,3,5,10];
 var manapot = [0,5,2,1];
 
 //usage of potion
-var healthpotpwr = 110;
-var manapotpwr = 20;
+var healthpotpwr = 1000;
+var manapotpwr = 60;
 
 //possible health 27 attrib
-var healthinc = 100;
-var manainc = 30;
+var healthinc = 500;
+var manainc = 40;
 var healthpotinc = 1;
 var manapotinc = 1;
-var damageinc = 20;
+var damageinc = 200;
 
 
 //player choice status
