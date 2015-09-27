@@ -555,7 +555,7 @@ function draw(){
 		
 		//sepecify the name before "albert" on the array
 
-		if(enemyName[enemyctr] == "Spider")
+		if(enemyName[enemyctr] == "Shadow")
 		{
 			enterState(101);
 		}
