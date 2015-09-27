@@ -54,6 +54,39 @@ var clearW = 400;
 var clearH = 200;
 
 
+var randomatk1 = Math.floor(Math.random() * (40 - 30 + 1)) + 30;
+var randomatk2 = Math.floor(Math.random() * (60 - 50 + 1)) + 50;
+var randomatk3 = Math.floor(Math.random() * (80- 70 + 1)) + 70;
+var randomatk4 = Math.floor(Math.random() * (110 - 100 + 1)) + 100;
+var randomatk5 = Math.floor(Math.random() * (160 - 150 + 1)) + 150;
+var randomatk6 = Math.floor(Math.random() * (185 - 175 + 1)) + 175;
+var randomatk7 = Math.floor(Math.random() * (210 - 200 + 1)) + 200;
+var randomatk8 = Math.floor(Math.random() * (250 - 240 + 1)) + 240;
+var randomatk9 = Math.floor(Math.random() * (260 - 250 + 1)) + 250;
+var randomatk10 = Math.floor(Math.random() * (300 - 200 + 1)) + 200;
+
+var rndhealth1 = Math.floor(Math.random() * (4000 - 2500 + 1)) + 2500;
+var rndhealth2 = Math.floor(Math.random() * (5000 - 3000 + 1)) + 3000;
+var rndhealth3 = Math.floor(Math.random() * (6000 - 4000 + 1)) + 4000;
+var rndhealth4 = Math.floor(Math.random() * (7500 - 5000 + 1)) + 5000;
+var rndhealth5 = Math.floor(Math.random() * (9000 - 7500 + 1)) + 7500;
+var rndhealth6 = Math.floor(Math.random() * (9500 - 8500 + 1)) + 8500;
+var rndhealth7 = Math.floor(Math.random() * (10000 - 9000 + 1)) + 9000;
+var rndhealth8 = Math.floor(Math.random() * (11500 - 10500 + 1)) + 10500;
+var rndhealth9 = Math.floor(Math.random() * (13000 - 11000 + 1)) + 11000;
+var rndhealth10 = Math.floor(Math.random() * (19000 - 15000 + 1)) + 15000;
+
+
+
+var rdmplayrdmg1 = Math.floor(Math.random() * (200 - 100 + 1)) + 100 ;
+var rdmplayrdmg2 = Math.floor(Math.random() * (310 - 250 + 1)) + 200;
+var rdmplayrdmg3 = Math.floor(Math.random() * (320 - 100 + 1)) + 100;
+
+
+var rdmplayrSpc1 = Math.floor(Math.random() * (700 - 600 + 1)) + 600;
+var rdmplayrSpc2 = Math.floor(Math.random() * (950 - 800 + 1)) + 800;
+var rdmplayrSpc3 = Math.floor(Math.random() * (1100 - 900 + 1)) + 900;
+
 //variable for gaining experience
 
 
@@ -63,23 +96,23 @@ var userpetsname =  '';
 var enemyctr = 0;
 
 //enemy variables
-var enemyHealth = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 26000];
-var enemyDamage = [25,35,45,55,85,100,120,130,150,200];
+var enemyHealth = [rndhealth1, rndhealth2, rndhealth3, rndhealth4, rndhealth5, rndhealth6, rndhealth7, rndhealth8, rndhealth9, rndhealth10];
+var enemyDamage = [randomatk1,randomatk2,randomatk3,randomatk4,randomatk5,randomatk6,randomatk7,randomatk8,randomatk9,randomatk10];
 var counter = 0;
 
 var enemeycurhealth;
 
 //player variable
-var health = [0,20000,10000,7000];
+var health = [0,12000,7000,7000];
 var mana = [0,180,240,300];
-var damage = [0,300, 400,500];
-var special = [0,1500,3000,5000];
+var damage = [0,rdmplayrdmg1, rdmplayrdmg2,rdmplayrdmg3];
+var special = [0,rdmplayrSpc1,rdmplayrSpc2,rdmplayrSpc3];
 var healthpot = [0,3,5,10];
-var manapot = [0,7,5,3];
+var manapot = [0,5,2,1];
 
 //usage of potion
 var healthpotpwr = 110;
-var manapotpwr = 40;
+var manapotpwr = 20;
 
 //possible health 27 attrib
 var healthinc = 100;
@@ -187,6 +220,7 @@ function draw(){
 	{
 
 
+		myAudio.pause();
 		g2d.font = "41px Courier New";
 		g2d.fillStyle = "#CCCCCC";
 		g2d.fillText("THANKS FOR PLAYING!",(width/2) - (g2d.measureText("THANKS FOR PLAYING!").width /2), 60);
@@ -197,6 +231,14 @@ function draw(){
 
 		};
 		picture.src = "albert.png";
+
+		//songBG('perfectcrime.mp3');
+		myAudio4 = new Audio('perfectcrime.mp3'); 
+		myAudio4.addEventListener('ended', function() {
+   		this.currentTime = 0;
+    	this.play();
+		}, false);
+		myAudio4.play();
 
 		g2d.font = "24px Courier New";
 		g2d.fillStyle = "#CCCCCC";
@@ -724,6 +766,7 @@ function draw(){
 		}
 		else
 		{
+			boss.pause();
 			enterState(999);
 		}
 		
@@ -750,7 +793,7 @@ function draw(){
 		g2d.fillText("No.....!!!!!!", 100, Sline += Nline)},1000)
 
 		myVar=setTimeout(function(){
-		g2d.fillText("I can't believe you beat me charName!" , 100, Sline += Nline)},3000)
+		g2d.fillText("I can't believe you beat me " + charName + "!" , 100, Sline += Nline)},3000)
 
 		myVar=setTimeout(function(){
 		g2d.fillText("As a reward, I will give you grant you exit from this world..", 100, Sline += Nline)},5000)
@@ -831,9 +874,6 @@ function draw(){
 
 
 		myVar=setTimeout(function(){
-		endgame.pause()},7900)
-
-		myVar=setTimeout(function(){
 		gameState(1)},8000)
 
 	}
@@ -845,11 +885,9 @@ function draw(){
 		var gameover = new Audio('gameover.ogg');
 		gameover.play();
 
-		if (gameState > 102 )
-		{
-		  boss.pause();
-		}
-
+		
+		  
+		
 		myAudio2.pause();
 
 		g2d.font = "32px Courier New";
@@ -942,7 +980,7 @@ function draw(){
 		{
 			if(choice == '')
 			{
-				
+				endgame.pause();
 				enterState(106);
 			}
 
@@ -959,14 +997,20 @@ function draw(){
 			
 				if(choice == "1")
 				{
-					g2d.fillText(userpetsname + " attack with " +  damageCh + " damage!", posisitonattackx , posisitonattacky);
-					g2d.fillText("Albert attack with " + enemyDamage[9] + " damage!", posisitonattackx , posisitonattacky += nextlinebattle);
+
+					var rndm1 = Math.floor(Math.random() * (150 - 0 + 1)) + 0;
+					var rndm2 = Math.floor(Math.random() * (200 - 50 + 1)) +  50;
+
+					var atcksnd = new Audio('Jumplanding.wav');
+					atcksnd.play();
+					g2d.fillText(userpetsname + " attack with " +  (damageCh + rndm1) + " damage!", posisitonattackx , posisitonattacky);
+					g2d.fillText("Albert attack with " + (enemyDamage[9] + rndm2) + " damage!", posisitonattackx , posisitonattacky += nextlinebattle);
 					
 					myVar=setTimeout(function(){
 					g2d.clearRect(clearX,clearY, clearW,clearH)},1500)
 
-					healthCh -= enemyDamage[9];
-					enemyHealth[9] -= damageCh;	
+					healthCh -= (enemyDamage[9] + rndm2);
+					enemyHealth[9] -= (damageCh + rndm1);	
 
 					if(enemyHealth[9] > 1)
 					{
@@ -984,14 +1028,20 @@ function draw(){
 				{
 					if(manaCh > 79)
 					{
-						g2d.fillText(userpetsname + " uses special damage and dealt " + specialCh + " damage!", posisitonattackx , posisitonattacky);
-						g2d.fillText(enemyName[9] + " retaliate with " + enemyDamage[9] + " damage!", posisitonattackx , posisitonattacky += nextlinebattle);
+						var atcksnd2 = new Audio('fireblast1.wav');
+						var rndm1 = Math.floor(Math.random() * (350 - 0 + 1)) + 0;
+						var rndm2 = Math.floor(Math.random() * (200 - 50 + 1)) +  50;
+
+
+						atcksnd2.play();
+						g2d.fillText(userpetsname + " uses special damage and dealt " + (specialCh + rndm1) + " damage!", posisitonattackx , posisitonattacky);
+						g2d.fillText(enemyName[9] + " retaliate with " + (enemyDamage[9] + rndm2) + " damage!", posisitonattackx , posisitonattacky += nextlinebattle);
 						
 						myVar=setTimeout(function(){
 						g2d.clearRect(clearX,clearY, clearW,clearH)},1500)
 
-						healthCh -= enemyDamage[9];
-						enemyHealth[9] -= specialCh;
+						healthCh -= (enemyDamage[9] + rndm2);
+						enemyHealth[9] -= (specialCh + rndm1);
 						manaCh -= 80;	
 
 						if(enemyHealth[9] > 1)
@@ -1019,10 +1069,19 @@ function draw(){
 				{
 					if(healthpotCh > 0)
 					{
+						var atcksnd = new Audio('healthincrease.wav');
+						atcksnd.play();
+						
+
+						var rndm1 = Math.floor(Math.random() * (150 - 0 + 1)) + 0;
+						var rndm2 = Math.floor(Math.random() * (200 - 50 + 1)) +  50;
+
 						g2d.fillText(userpetsname + " uses health pot!", posisitonattackx , posisitonattacky);
 						healthpotCh--;
 						healthCh+=healthpotpwr;
+						healthCh -= (enemyDamage[9] + rndm2);
 						g2d.fillText("You have " + healthpotCh + " health pot left", posisitonattackx , posisitonattacky += nextlinebattle);
+						g2d.fillText(enemyName[9] + " retaliate with " + (enemyDamage[9] + rndm2) + " damage!", 300 , posisitonattack += nextlinebattle);
 						myVar=setTimeout(function(){
 						g2d.clearRect(clearX,clearY, clearW,clearH)},1500)
 
@@ -1042,10 +1101,19 @@ function draw(){
 				{
 					if(manapotCh > 0)
 					{
+						var atcksnd = new Audio('manaincrease.wav');
+						atcksnd.play();
+						
+
+						var rndm1 = Math.floor(Math.random() * (150 - 0 + 1)) + 0;
+						var rndm2 = Math.floor(Math.random() * (200 - 50 + 1)) +  50;
+
 						g2d.fillText(userpetsname + " uses mana pot!", posisitonattackx , posisitonattacky);
 						manapotCh--;
 						manaCh += manapotpwr;
+						healthCh -= enemyDamage[9];
 						g2d.fillText("You have " + manapotCh + " mana pot left", posisitonattackx , posisitonattacky += nextlinebattle);
+						g2d.fillText(enemyName[9] + " retaliate with " + (enemyDamage[9] + rndm2)+ " damage!", 300 , posisitonattack += nextlinebattle);
 						myVar=setTimeout(function(){
 						g2d.clearRect(clearX,clearY, clearW,clearH)},1500)
 
@@ -1084,13 +1152,20 @@ function draw(){
 			
 				if(choice == "1")
 				{
-					g2d.fillText(userpetsname + " attack with " +  damageCh + " damage!", 300 , posisitonattack);
-					g2d.fillText(enemyName[enemyctr] + " attack with " + enemyDamage[enemyctr] + " damage!", 300 , posisitonattack += nextlinebattle);
+					var rndm1 = Math.floor(Math.random() * (150 - 0 + 1)) + 0;
+					var rndm2 = Math.floor(Math.random() * (200 - 50 + 1)) +  50;
+
+					g2d.fillText(userpetsname + " attack with " +  (damageCh + rndm1) + " damage!", 300 , posisitonattack);
+					g2d.fillText(enemyName[enemyctr] + " attack with " + (enemyDamage[enemyctr] + rndm2) + " damage!", 300 , posisitonattack += nextlinebattle);
 					myVar=setTimeout(function(){
 					g2d.clearRect(clearX,clearY, clearW,clearH)},1500)
 
-					healthCh -= enemyDamage[enemyctr];
-					enemyHealth[enemyctr] -= damageCh;	
+					var atcksnd = new Audio('Jumplanding.wav');
+					atcksnd.play();
+
+					healthCh -= (enemyDamage[enemyctr] + rndm2);
+					enemyHealth[enemyctr] -= (damageCh +rndm1);	
+
 
 					if(enemyHealth[enemyctr] > 1)
 					{
@@ -1108,14 +1183,19 @@ function draw(){
 				{
 					if(manaCh > 79)
 					{
-						g2d.fillText(userpetsname + " uses special damage and dealt " + specialCh + " damage!", 300 , posisitonattack);
-						g2d.fillText(enemyName[enemyctr] + " retaliate with " + enemyDamage[enemyctr] + " damage!", 300 , posisitonattack += nextlinebattle);
+						var rndm1 = Math.floor(Math.random() * (350 - 0 + 1)) + 0;
+						var rndm2 = Math.floor(Math.random() * (200 - 50 + 1)) +  50;
+
+						var atcksnd2 = new Audio('fireblast1.wav');
+						atcksnd2.play();
+						g2d.fillText(userpetsname + " uses special damage and dealt " + (specialCh + rndm1)   + " damage!", 300 , posisitonattack);
+						g2d.fillText(enemyName[enemyctr] + " retaliate with " + (enemyDamage[enemyctr] + rndm2) + " damage!", 300 , posisitonattack += nextlinebattle);
 						
 						myVar=setTimeout(function(){
 						g2d.clearRect(clearX,clearY, clearW,clearH)},1500)
 
-						healthCh -= enemyDamage[enemyctr];
-						enemyHealth[enemyctr] -= specialCh;
+						healthCh -= (enemyDamage[enemyctr] + rndm2);
+						enemyHealth[enemyctr] -= (specialCh + rndm1);
 						manaCh -= 80;	
 
 						if(enemyHealth[enemyctr] > 1)
@@ -1143,10 +1223,18 @@ function draw(){
 				{
 					if(healthpotCh > 0)
 					{
+						var rndm1 = Math.floor(Math.random() * (350 - 0 + 1)) + 0;
+						var rndm2 = Math.floor(Math.random() * (200 - 50 + 1)) +  50;
+
+						var atcksnd2 = new Audio('healthincrease.wav');
+						atcksnd2.play();
+
 						g2d.fillText(userpetsname + " uses health pot!", 300 , posisitonattack);
 						healthpotCh--;
 						healthCh+=healthpotpwr;
+						healthCh -= (enemyDamage[enemyctr] + rndm2);
 						g2d.fillText("You have " + healthpotCh + " health pot left", 300 , posisitonattack += nextlinebattle);
+						g2d.fillText(enemyName[enemyctr] + " retaliate with " + (enemyDamage[enemyctr] + rndm2) + " damage!", 300 , posisitonattack += nextlinebattle);
 						myVar=setTimeout(function(){
 						g2d.clearRect(clearX,clearY, clearW,clearH)},1500)
 
@@ -1166,10 +1254,20 @@ function draw(){
 				{
 					if(manapotCh > 0)
 					{
+
+						var rndm1 = Math.floor(Math.random() * (350 - 0 + 1)) + 0;
+						var rndm2 = Math.floor(Math.random() * (200 - 50 + 1)) +  50;
+
+						var atcksnd2 = new Audio('manaincrease.wav');
+						atcksnd2.play();
+
+
 						g2d.fillText(userpetsname + " uses mana pot!", 300 , posisitonattack);
 						manapotCh--;
 						manaCh += manapotpwr;
+						healthCh -= (enemyDamage[enemyctr] + rndm2);
 						g2d.fillText("You have " + manapotCh + " health pot left", 300 , posisitonattack += nextlinebattle);
+						g2d.fillText(enemyName[enemyctr] + " retaliate with " + (enemyDamage[enemyctr] + rndm2)+ " damage!", 300 , posisitonattack += nextlinebattle);
 						myVar=setTimeout(function(){
 						g2d.clearRect(clearX,clearY, clearW,clearH)},1500)
 
@@ -1212,13 +1310,20 @@ function draw(){
 			
 				if(choice == "1")
 				{
-					g2d.fillText(userpetsname + " attack with " +  damageCh + " damage!", posisitonattackx , posisitonattacky);
-					g2d.fillText(enemyName[enemyctr] + " attack with " + enemyDamage[enemyctr] + " damage!", posisitonattackx , posisitonattacky += nextlinebattle);
+
+					var rndm1 = Math.floor(Math.random() * (150 - 0 + 1)) + 0;
+					var rndm2 = Math.floor(Math.random() * (200 - 50 + 1)) +  50;
+
+
+					var atcksnd = new Audio('Jumplanding.wav');
+					atcksnd.play();
+					g2d.fillText(userpetsname + " attack with " +  (damageCh + rndm1) + " damage!", posisitonattackx , posisitonattacky);
+					g2d.fillText(enemyName[enemyctr] + " attack with " + (enemyDamage[enemyctr] + rndm2)+ " damage!", posisitonattackx , posisitonattacky += nextlinebattle);
 					myVar=setTimeout(function(){
 					g2d.clearRect(clearX,clearY, clearW,clearH)},1500)
 
-					healthCh -= enemyDamage[enemyctr];
-					enemyHealth[enemyctr] -= damageCh;	
+					healthCh -= (enemyDamage[enemyctr] + rndm2);
+					enemyHealth[enemyctr] -= (damageCh + rndm1);	
 
 					if(enemyHealth[enemyctr] > 1)
 					{
@@ -1236,14 +1341,20 @@ function draw(){
 				{
 					if(manaCh > 79)
 					{
-						g2d.fillText(userpetsname + " uses special damage and dealt " + specialCh + " damage!", posisitonattackx , posisitonattacky);
-						g2d.fillText(enemyName[enemyctr] + " retaliate with " + enemyDamage[enemyctr] + " damage!", posisitonattackx , posisitonattacky += nextlinebattle);
+
+						var rndm1 = Math.floor(Math.random() * (350 - 0 + 1)) + 0;
+						var rndm2 = Math.floor(Math.random() * (200 - 50 + 1)) +  50;
+
+						var atcksnd2 = new Audio('fireblast1.wav');
+						atcksnd2.play();
+						g2d.fillText(userpetsname + " uses special damage and dealt " + (specialCh + rndm1)+ " damage!", posisitonattackx , posisitonattacky);
+						g2d.fillText(enemyName[enemyctr] + " retaliate with " + (enemyDamage[enemyctr] + rndm2) + " damage!", posisitonattackx , posisitonattacky += nextlinebattle);
 						
 						myVar=setTimeout(function(){
 						g2d.clearRect(clearX,clearY, clearW,clearH)},1500)
 
-						healthCh -= enemyDamage[enemyctr];
-						enemyHealth[enemyctr] -= specialCh;
+						healthCh -= (enemyDamage[enemyctr] + rndm2) ;
+						enemyHealth[enemyctr] -= (specialCh + rndm1);
 						manaCh -= 80;	
 
 						if(enemyHealth[enemyctr] > 1)
@@ -1271,10 +1382,20 @@ function draw(){
 				{
 					if(healthpotCh > 0)
 					{
+
+
+						var rndm1 = Math.floor(Math.random() * (350 - 0 + 1)) + 0;
+						var rndm2 = Math.floor(Math.random() * (200 - 50 + 1)) +  50;
+
+						var atcksnd2 = new Audio('healthincrease.wav');
+						atcksnd2.play();
+
 						g2d.fillText(userpetsname + " uses health pot!", posisitonattackx , posisitonattacky);
 						healthpotCh--;
 						healthCh+=healthpotpwr;
+						healthCh -= (enemyDamage[enemyctr] + rndm2);
 						g2d.fillText("You have " + healthpotCh + " health pot left", posisitonattackx , posisitonattacky += nextlinebattle);
+						g2d.fillText(enemyName[enemyctr] + " retaliate with " +(enemyDamage[enemyctr] + rndm2) + " damage!", 300 , posisitonattack += nextlinebattle);
 						myVar=setTimeout(function(){
 						g2d.clearRect(clearX,clearY, clearW,clearH)},1500)
 
@@ -1294,10 +1415,19 @@ function draw(){
 				{
 					if(manapotCh > 0)
 					{
+
+						var rndm1 = Math.floor(Math.random() * (350 - 0 + 1)) + 0;
+						var rndm2 = Math.floor(Math.random() * (200 - 50 + 1)) +  50;
+
+						var atcksnd2 = new Audio('manaincrease.wav');
+						atcksnd2.play();
+
 						g2d.fillText(userpetsname + " uses mana pot!", posisitonattackx , posisitonattacky);
 						manapotCh--;
 						manaCh += manapotpwr;
+						healthCh -= (enemyDamage[enemyctr] + rndm2);
 						g2d.fillText("You have " + manapotCh + " mana pot left", posisitonattackx , posisitonattacky += nextlinebattle);
+						g2d.fillText(enemyName[enemyctr] + " retaliate with " + (enemyDamage[enemyctr]+ rndm2) + " damage!", 300 , posisitonattack += nextlinebattle);
 						myVar=setTimeout(function(){
 						g2d.clearRect(clearX,clearY, clearW,clearH)},1500)
 
