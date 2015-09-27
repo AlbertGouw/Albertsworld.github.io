@@ -5,6 +5,11 @@
 //is greater to 0, if not game over!!
 //go to a game over scene!
 
+//add random damage for every attack
+//pake potion kena attack
+//surender macet
+
+
 
 
 window.onload = init;
@@ -836,10 +841,16 @@ function draw(){
 	if(gameState == 999)
 	{
 
+
 		var gameover = new Audio('gameover.ogg');
 		gameover.play();
 
-		boss.pause();
+		if (gameState > 102 )
+		{
+		  boss.pause();
+		}
+
+		myAudio2.pause();
 
 		g2d.font = "32px Courier New";
 		g2d.fillStyle = "#FF0000";
