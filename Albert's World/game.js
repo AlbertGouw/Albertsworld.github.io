@@ -1,33 +1,32 @@
-//sekarang tinggal copas2 buat stage 2 - 9
-//ingat buat tambahin counter buat monster sama keep track darah dan pot player
-
-//put an if statement on every entrance state scene to check whether the player's health 
-//is greater to 0, if not game over!!
-//go to a game over scene!
-
-//add random damage for every attack
-//pake potion kena attack
-//surender macet
-
-
 
 
 window.onload = init;
 
+
+//name for the canvas
 var gCanvas;
 var g2d;
 
+// set for the width and height for canvas
 var width = 1000;
 var height = 640;
+
+//to hold the player name
 var charName = '';
 
+
+//title of the game
 var title = "Welcome To Albert's World!";
 
+
+//to be used for the position of the text
 var myVar;
 var startingline = 70;
 var nextline = 30;
 var nextlinebattle = 20;
 
+
+//another variables to be used for the position of the text
 var playerhpdisplay1 = 24;
 var playerhpdisplay2 = 24;
 var playermanadis = 44;
@@ -38,13 +37,13 @@ var healthpotdis2 = 64;
 var manapotdis = 84;
 var manapotdis2 = 84;
 
-//counter variable for stage
-var stagenumber = 7;
 
 
 //song counter
 var songctr = 0;
 var temp = 0;
+
+
 
 //to coordination to clear mid section text during fight
 
@@ -54,6 +53,7 @@ var clearW = 400;
 var clearH = 200;
 
 
+// every game starts with different number of possible atack power of enemy
 var randomatk1 = Math.floor(Math.random() * (40 - 30 + 1)) + 30;
 var randomatk2 = Math.floor(Math.random() * (60 - 50 + 1)) + 50;
 var randomatk3 = Math.floor(Math.random() * (80- 70 + 1)) + 70;
@@ -65,10 +65,11 @@ var randomatk8 = Math.floor(Math.random() * (250 - 240 + 1)) + 240;
 var randomatk9 = Math.floor(Math.random() * (260 - 250 + 1)) + 250;
 var randomatk10 = Math.floor(Math.random() * (300 - 200 + 1)) + 200;
 
-var rndhealth1 = Math.floor(Math.random() * (4000 - 2500 + 1)) + 2500;
-var rndhealth2 = Math.floor(Math.random() * (5000 - 3000 + 1)) + 3000;
-var rndhealth3 = Math.floor(Math.random() * (6000 - 4000 + 1)) + 4000;
-var rndhealth4 = Math.floor(Math.random() * (7500 - 5000 + 1)) + 5000;
+// every game start with different possible health power of enemy
+var rndhealth1 = Math.floor(Math.random() * (5000 - 2500 + 1)) + 2500;
+var rndhealth2 = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
+var rndhealth3 = Math.floor(Math.random() * (7000 - 4000 + 1)) + 4000;
+var rndhealth4 = Math.floor(Math.random() * (8500 - 5000 + 1)) + 5000;
 var rndhealth5 = Math.floor(Math.random() * (9000 - 7500 + 1)) + 7500;
 var rndhealth6 = Math.floor(Math.random() * (9500 - 8500 + 1)) + 8500;
 var rndhealth7 = Math.floor(Math.random() * (10000 - 9000 + 1)) + 9000;
@@ -78,19 +79,22 @@ var rndhealth10 = Math.floor(Math.random() * (19000 - 15000 + 1)) + 15000;
 
 
 
+// every game start with different possible damage power for user
 var rdmplayrdmg1 = Math.floor(Math.random() * (200 - 100 + 1)) + 100 ;
 var rdmplayrdmg2 = Math.floor(Math.random() * (310 - 250 + 1)) + 200;
 var rdmplayrdmg3 = Math.floor(Math.random() * (320 - 100 + 1)) + 100;
 
-
+// every game start with different possible special damage power for user
 var rdmplayrSpc1 = Math.floor(Math.random() * (700 - 600 + 1)) + 600;
 var rdmplayrSpc2 = Math.floor(Math.random() * (950 - 800 + 1)) + 800;
 var rdmplayrSpc3 = Math.floor(Math.random() * (1100 - 900 + 1)) + 900;
 
-//variable for gaining experience
 
 
+//name for the enemy
 var enemyName = ["Spider" , "Skeleton" , "Zombie" , "Warrior" , "Sniper" , "Vampire", "Goliath", "Titan" , "Shadow" , "Albert"];
+
+//name for the player's monster
 var playerMonster = ["blank",	"Snixling" , "Charzo" , "Jargsaw"];
 var userpetsname =  '';
 var enemyctr = 0;
@@ -103,7 +107,7 @@ var counter = 0;
 var enemeycurhealth;
 
 //player variable
-var health = [0,25000,20000,15000];
+var health = [0,12000,10000,7000];
 var mana = [0,180,240,300];
 var damage = [0,rdmplayrdmg1, rdmplayrdmg2,rdmplayrdmg3];
 var special = [0,rdmplayrSpc1,rdmplayrSpc2,rdmplayrSpc3];
@@ -111,11 +115,11 @@ var healthpot = [0,3,5,10];
 var manapot = [0,5,2,1];
 
 //usage of potion
-var healthpotpwr = 1000;
+var healthpotpwr = 700;
 var manapotpwr = 60;
 
-//possible health 27 attrib
-var healthinc = 500;
+//number of attributes increased when points are used
+var healthinc = 400;
 var manainc = 40;
 var healthpotinc = 1;
 var manapotinc = 1;
@@ -130,13 +134,24 @@ var specialCh;
 var healthpotCh; 
 var manapotCh;
 
+
+//to hold the value of health mana of player
 var currenthealth;
 var currentmana;
+
+//hold the value of of manapotion and health potion of player
 var currhealthpot;
 var currmanapot ;
 
+
+//indicates the points can be used when user level up
 var attributepts = 0;
+
+//variable to track where which page to go
 var gameState =0;
+
+//counter variable for stage
+var stagenumber = 7;
 
 function init(){
 	gCanvas= document.getElementById("gameCanvas");
@@ -150,17 +165,13 @@ function init(){
 
 	draw();
 
-/*
-	myVar = setTimeout("draw.welcomMsg()",2000);
-	myVar = setTimeout("draw.welcomeMsg2()",4000);
-
-	*/
 
 }
 
-
+//where all the function being executed
 function draw(){
 
+	//for playing song background with loop
 	function playsong(nameofsong){
 		myAudio2 = new Audio(nameofsong); 
 		myAudio2.addEventListener('ended', function() {
@@ -171,11 +182,13 @@ function draw(){
 
 	}
 
+	//play for sound effect
 	function playonce(soundeffect){
 		var audio = new Audio(soundeffect);
 		audio.play();
 	}
 
+	//indicates the first welcoming page
 	if(gameState == 0)
 	{ 
 
@@ -216,6 +229,7 @@ function draw(){
 
 	
 
+	//page for end game
 		if(gameState == 1)
 	{
 
@@ -257,6 +271,7 @@ function draw(){
 
 	
 
+	//second phase of the game
 	if(gameState == 2)
 	{  
 		myAudio.pause();
@@ -275,6 +290,7 @@ function draw(){
 	}
 
 
+	//third page for the game
 	if(gameState == 3)
 	{
 		var Sline = startingline;
@@ -317,6 +333,7 @@ function draw(){
 	}
 
 
+	//fourth page of the game
 	if(gameState == 4)
 	{
 		var Sline = startingline;
@@ -327,10 +344,6 @@ function draw(){
 		myVar=setTimeout(function(){
 			g2d.fillText("In this game you will choose one out of three monster. ", 100, Sline += Nline)
 		},500)
-
-		/*myVar=setTimeout(function(){
-			g2d.fillText("three monster.", 100, Sline += Nline)
-		},500)*/
 
 
 		myVar=setTimeout(function(){
@@ -356,6 +369,8 @@ function draw(){
 	}
 
 
+
+	//fifth page of the game
 	if(gameState == 5)
 	{
 		var Sline = startingline;
@@ -388,6 +403,7 @@ function draw(){
 	}
 
 
+	//battle page
 	
 	if(gameState == 6)
 	{  
@@ -436,12 +452,10 @@ function draw(){
 		{
 			enterState(999);
 		}
-
-
-
-		//need to add a picture on the middle of the page
 	
 	}
+
+	//battle page
 
 	if(gameState == 7)
 	{  
@@ -489,6 +503,7 @@ function draw(){
 		//need to add a picture on the middle of the page
 	
 	}
+	/*
 		if(gameState == 8)
 	{  
 		
@@ -537,8 +552,9 @@ function draw(){
 		//need to add a picture on the middle of the page
 	
 	}
+*/
 
-
+	//level up page
 	if(gameState == 99)
 	{
 
@@ -594,6 +610,8 @@ function draw(){
 				}*/
 
 	}
+
+	//message for transition to another level
 	if(gameState == 100)
 	{
 
@@ -619,6 +637,8 @@ function draw(){
 		}
 
 	}
+
+	//preparing battle for boss.
 	if(gameState == 101)
 	{
 
@@ -673,6 +693,8 @@ function draw(){
 			myVar=setTimeout(function(){
 			enterState(102)},18500)
 	}
+
+	//another page for dialogue with boss
 	if(gameState == 102)
 	{
 		var Sline = startingline;
@@ -706,6 +728,8 @@ function draw(){
 		
 	}
 
+
+	//page for fighting  boss 
 	if(gameState == 103)
 	{
 		var Sline = startingline;
@@ -817,6 +841,7 @@ function draw(){
 
 	}
 
+	//dialoge for defeating the boss
 	if(gameState == 105)
 	{
 		
@@ -847,6 +872,7 @@ function draw(){
 
 	}
 
+	//dialogue for credits
 
 	if(gameState == 106)
 	{
@@ -878,6 +904,7 @@ function draw(){
 
 	}
 
+	//page when you lose the game
 	if(gameState == 999)
 	{
 
@@ -907,6 +934,7 @@ function draw(){
 
 
 
+	//create the canvas
 	var input = new CanvasInput({
 	canvas: gCanvas,
 	x: 3,
@@ -918,8 +946,10 @@ function draw(){
 	selectionColor: "#FFFFFF",
 	fontColor: "#FFFFFF",
 	placeHolder: 'Enter command here...',
-	onsubmit: function(){ 
+	onsubmit: function(){ //function for when user enter a command, basically read what the user input
 		var choice = input._value;
+
+		//all if statements are to connect the page accordingly with the user
 		if(gameState == 0)
 		{
 			if(choice == "1"){
@@ -1522,6 +1552,8 @@ function draw(){
 	});
 	input.focus();
 
+	//toi display the commands that the player can use
+
 	function commanMov(){
 		g2d.fillText("----------------------------------------------------------------------------------------", 24, cmdline);
 		g2d.fillText("Command :", 24, cmdline += position);
@@ -1532,6 +1564,7 @@ function draw(){
 		g2d.fillText("5. Surrender! ", 24, cmdline += position);
 	}
 
+	//function for looping sond
 	function songBG(name){
 		myAudio = new Audio(name); 
 		myAudio.addEventListener('ended', function() {
@@ -1545,7 +1578,7 @@ function draw(){
 
 } //closing bracket for draw
 
-
+//function to enter next page
 
 function enterState(state){
 	gameState = state;
@@ -1553,6 +1586,8 @@ function enterState(state){
 	draw(); 
 }
 
+
+//function to clear all the canvas
 function clearCanvas(context, canvas)
 {
 	context.clearRect(0, 0, canvas.width , canvas.height);
