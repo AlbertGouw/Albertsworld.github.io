@@ -1,27 +1,44 @@
-All the credits for the music and sound effect!
+All the credits for the music, sound effect and pictures!
 
 all are taken from opengameart.org
 
 
-fire blast 
-credit : http://freesound.org/people/Julien%20Matthey/sounds/105016/
+fire blast  -- http://freesound.org/people/Julien%20Matthey/sounds/105016/
 
-openchest
-spookymodem
+openchest -- spookymodem
 
-bottle break spookymodem
+bottle break -- spookymodem
 
-jump landing by Dan Knoflicek
+jump landing -- by Dan Knoflicek
 
-news jingle from openGameArt,org
+news jingle -- openGameArt,org
 
 
-the last encounter by http://www.matthewpablo.com ( music by Matthew Pablo)
+the last encounter -- http://www.matthewpablo.com ( music by Matthew Pablo)
 
 
-boss by #CleytonR-X.
+boss -- #CleytonR-X.
 
-discocent by  neocrey.com
+discocent -- neocrey.com
 
 perfectcrive - https://soundcloud.com/alexandr-zhelanov
+
+level up --  nedadSimic
+
+win -- Dan Knoflicek
+
+healthincrease --  Dan Knoflicek.
+
+manaincrease --  Replenish Life Force Copyright 2013 Iwan Gabovitch http://freesound.org/people/qubodup/ , CC-BY3 http://creativecommons.org/licenses/by/3.0/ license.
+
+
+
+pictures:
+
+albert.png made by qubodup
+jargsaw.png made by  Manveru and Dorimen
+
+
+rise of spirit by Alexandr Zhelanov
+
 
